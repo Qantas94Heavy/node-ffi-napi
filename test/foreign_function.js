@@ -104,7 +104,7 @@ describe('ForeignFunction', function () {
 
   it('should call the static "add_boxes" bindings', function () {
     const count = 3;
-    const boxes = new Buffer(box.size * count);
+    const boxes = Buffer.alloc(box.size * count);
     box.set(boxes, box.size * 0, { width: 1, height: 10 });
     box.set(boxes, box.size * 1, { width: 2, height: 20 });
     box.set(boxes, box.size * 2, { width: 3, height: 30 });
@@ -118,16 +118,15 @@ describe('ForeignFunction', function () {
 
   it('should call the static "int_array" bindings', function () {
     const IntArray = Array('int');
-    const int_array = ffi.ForeignFunction(bindings.int_array, IntArray, [ IntArray ]);
+    const int_array = ffi.ForeignFunction(bindings.int_array, 'pointer', [ IntArray ]);
     const array = new IntArray([ 1, 2, 3, 4, 5, -1 ]);
     const out = int_array(array);
-    out.length = array.length;
-    assert.strictEqual(2, out[0]);
-    assert.strictEqual(4, out[1]);
-    assert.strictEqual(6, out[2]);
-    assert.strictEqual(8, out[3]);
-    assert.strictEqual(10, out[4]);
-    assert.strictEqual(-1, out[5]);
+    assert.strictEqual(2, ref.readInt32(out, 0));
+    assert.strictEqual(4, ref.readInt32(out, 4));
+    assert.strictEqual(6, ref.readInt32(out, 8));
+    assert.strictEqual(8, ref.readInt32(out, 12));
+    assert.strictEqual(10, ref.readInt32(out, 16));
+    assert.strictEqual(-1, ref.readInt32(out, 20));
   });
 
   it('should call the static "array_in_struct" bindings', function () {
@@ -153,7 +152,7 @@ describe('ForeignFunction', function () {
   // https://github.com/node-ffi/node-ffi/issues/169
   it('should call the static "test_169" bindings', function () {
     const test = ffi.ForeignFunction(bindings.test_169, 'int', [ 'string', 'int' ]);
-    const b = new Buffer(20);
+    const b = Buffer.alloc(20);
     const len = test(b, b.length);
     assert.strictEqual('sample str', b.toString('ascii', 0, len));
   });
@@ -175,7 +174,7 @@ describe('ForeignFunction', function () {
 
   it('should not call the "ref()" function of its arguments', function () {
     const void_ptr_arg = ffi.ForeignFunction(bindings.abs, 'void *', [ 'void *' ]);
-    const b = new Buffer(0);
+    const b = Buffer.alloc(0);
     b.ref = assert.bind(null, 0, '"ref()" should not be called');
     void_ptr_arg(b);
   });
