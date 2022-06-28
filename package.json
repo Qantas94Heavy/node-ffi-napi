@@ -1,9 +1,10 @@
 {
-  "name": "ffi-napi",
-  "version": "4.0.3",
+  "name": "@qantas94heavy/ffi-napi",
+  "version": "4.0.0",
   "license": "MIT",
-  "author": "Anna Henningsen <anna@addaleax.net>",
+  "author": "Karl Cheng <qantas94heavy@gmail.com>",
   "contributors": [
+    "Anna Henningsen <anna@addaleax.net>",
     "Rick Branson <rick@diodeware.com>",
     "Nathan Rajlich <nathan@tootallnate.net>",
     "Gabor Mezo <gabor.mezo@outlook.com>"
@@ -20,7 +21,7 @@
     "napi",
     "stable"
   ],
-  "homepage": "http://github.com/node-ffi-napi/node-ffi-napi",
+  "homepage": "http://github.com/Qantas94Heavy/node-ffi-napi",
   "engines": {
     "node": ">=10"
   },
@@ -49,9 +50,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/node-ffi-napi/node-ffi-napi.git"
-  },
-  "bugs": {
-    "url": "http://github.com/node-ffi-napi/node-ffi-napi/issues"
+    "url": "https://github.com/Qantas94Heavy/node-ffi-napi.git"
   }
 }
