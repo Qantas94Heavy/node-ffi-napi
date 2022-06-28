@@ -31,8 +31,8 @@
     "get-uv-event-loop-napi-h": "^1.0.5",
     "node-addon-api": "^3.0.0",
     "node-gyp-build": "^4.2.1",
-    "ref-napi": "../ref-napi-ng",
-    "ref-struct-di": "^1.1.0"
+    "ref-napi": "https://github.com/Qantas94Heavy/ref-napi.git",
+    "ref-struct-di": "npm:@rclnodejs/ref-struct-di@^1.1.0"
   },
   "devDependencies": {
     "fs-extra": "^9.0.0",
@@ -40,7 +40,7 @@
     "nyc": "^15.0.0",
     "prebuildify": "^4.0.0",
     "prebuildify-ci": "^1.0.5",
-    "ref-array-di": "^1.2.1"
+    "ref-array-di": "npm:@rclnodejs/ref-struct-di@^1.2.1"
   },
   "scripts": {
     "install": "node-gyp-build",
